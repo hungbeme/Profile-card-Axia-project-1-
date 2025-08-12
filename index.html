@@ -22,79 +22,86 @@
     <title>Profile Card</title>
   </head>
 
-  <body>
-    <div class="main-body-container">
-      <header class="header">
-        <nav class="nav">
-          <div class="search-container">
-            <ion-icon class="search-icon icon" name="search-outline"></ion-icon>
-            <input
-              class="input-name"
-              type="search"
-              placeholder="Enter name to search"
-            />
+  <body class="toogle-light-mode">
+    <main class="main">
+      <div class="top-container">
+        <div class="mode">
+          <ion-icon class="toogle-mode light" name="sunny-outline"></ion-icon>
+          <ion-icon class="toogle-mode dark add" name="moon-outline"></ion-icon>
+        </div>
+
+        <div class="search-container">
+          <ion-icon class="search-icon icon" name="search-outline"></ion-icon>
+          <input
+            class="input-name"
+            type="search"
+            placeholder="Enter name to search"
+          />
+        </div>
+        <div class="button-container">
+          <button class="search-btn btn">Search</button>
+        </div>
+      </div>
+
+      <div class="feature-grid-container">
+        <!-- section 1 -->
+        <section class="main-container">
+          <div class="features-section">
+            <label class="filter">Filter by cities</label>
+            <select class="filter-form" name="filter-form" id="">
+              <option value="Select">Select</option>
+              <option value="name">Name</option>
+              <option value="Location">Location</option>
+              <option value="Email">Email</option>
+              <option value="Company">Company</option>
+            </select>
+
+            <label class="filter">Filter by company</label>
+            <select class="filter-form" name="filter-form" id="">
+              <option value="Select">Select</option>
+              <option value="name">Name</option>
+              <option value="Location">Location</option>
+              <option value="Email">Email</option>
+              <option value="Company">Company</option>
+            </select>
           </div>
-          <div class="button-container">
-            <button class="search-btn btn">Search</button>
-            <button class="clear-btn btn">Clear All</button>
-          </div>
-        </nav>
-      </header>
+        </section>
 
-      <main class="main">
-        <div class="feature-grid-container">
-          <!-- section 1 -->
-          <section class="main-container">
-            <div class="features-section">
-              <label class="filter">Filter by</label>
-              <select class="filter-form" name="filter-form" id="">
-                <option value="Select">Select</option>
-                <option value="name">Name</option>
-                <option value="Location">Location</option>
-                <option value="Email">Email</option>
-                <option value="Company">Company</option>
-              </select>
-            </div>
+        <!-- section 2 -->
+        <section class="grid-section">
+          <!-- <div class="profile-card hide">
+            <p class="profile-name">Hungbeme Taiwo samuel</p>
+            <div class="text-section">
+              <ul>
+                <li>
+                  <ion-icon class="icon" name="location-outline"></ion-icon>
+                  Location
+                </li>
+                <li><ion-icon name="business-outline"></ion-icon> Company</li>
+                <li>
+                  <ion-icon class="icon" name="mail-outline"></ion-icon> Email
+                </li>
+              </ul>
 
-            <button class="viewall-btn btn">View All</button>
-          </section>
+              <button class="link"  href="#">View More &dArr;</button>
 
-          <!-- section 2 -->
-          <section class="grid-section">
-            <!-- <div class="profile-card">
-              <p class="profile-name">Hungbeme Taiwo samuel</p>
-              <div class="text-section">
+              <div class="hidden-details">
                 <ul>
                   <li>
-                    <ion-icon class="icon" name="location-outline"></ion-icon>
-                    Location
-                  </li>
-                  <li><ion-icon name="business-outline"></ion-icon> Company</li>
-                  <li>
-                    <ion-icon class="icon" name="mail-outline"></ion-icon> Email
-                  </li>
-                  <li class="view-more">
-                    view more
-                    <ion-icon
-                      class="icon"
-                      name="chevron-down-outline"
-                    ></ion-icon>
-                  </li>
-                  <li class="hidden-details">
                     <ion-icon class="icon" name="call-outline"></ion-icon>
                     Phone
                   </li>
-                  <li class="hidden-details">
+                  <li class="">
                     <ion-icon class="icon" name="globe-outline"></ion-icon>
                     Website
                   </li>
                 </ul>
               </div>
-            </div> -->
-          </section>
-        </div>
-      </main>
-    </div>
+            </div>
+          </div> -->
+        </section>
+      </div>
+    </main>
     <footer></footer>
 
     <script

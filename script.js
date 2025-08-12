@@ -1,55 +1,85 @@
-'script;'
-
-const inputSearch = document.querySelector(".input-name");
-const searchBtn = document.querySelector(".search-btn");
-const clearBtn = document.querySelector(".clear-btn");
-const filterFormValue = document.querySelector(".filter-form");
-const viewAllBtn = document.querySelector(".viewall-btn");
-const gridSection = document.querySelector(".grid-section");
-
+"script;";
 console.log("working");
 
-// searchBtn.addEventListener("click", function () {
-//   console.log(inputSearch.value);
-//   console.log("first");
-// });
+const toogleBtn = document.querySelector(".toogle-mode");
+const light = document.querySelector(".light");
+const dark = document.querySelector(".dark");
+const inputSearch = document.querySelector(".input-name");
+const searchBtn = document.querySelector(".search-btn");
+// const clearBtn = document.querySelector(".clear-btn");
+const filterFormValue = document.querySelector(".filter-form");
+// const viewAllBtn = document.querySelector(".viewall-btn");
+const gridSection = document.querySelector(".grid-section");
+const viewMoreBtn = document.querySelector(".view-more");
+const hiddenDetail = document.querySelector(".li-details");
 
+/********************************/
+/******* USING API *******/
+/******************************/
 const renderDetails = function (data) {
   const html = `
-   <div class="profile-card">
-              <p class="profile-name">${data.name}</p>
-              <div class="text-section">
+  <div class="profile-card hide">
+            <p class="profile-name">${data.name}</p>
+            <div class="text-section">
+              <ul>
+                <li>
+                  <ion-icon class="icon" name="location-outline"></ion-icon>
+                  ${data.address.street}, ${data.address.city}
+                </li>
+                <li><ion-icon name="business-outline"></ion-icon> ${data.company.name} </li>
+                <li>
+                  <ion-icon class="icon" name="mail-outline"></ion-icon> ${data.email}
+                </li>
+              </ul>
+
+              <button class="link view-more" href="#">View More &dArr;</button>
+
+              <div class="hidden-details">
                 <ul>
                   <li>
-                    <ion-icon class="icon" name="location-outline"></ion-icon>
-                    ${data.address.city}
-                  </li>
-                  <li><ion-icon name="business-outline"></ion-icon> ${data.company.name}</li>
-                  <li>
-                    <ion-icon class="icon" name="mail-outline"></ion-icon> ${data.email}
-                  </li>
-                  <li class="view-more">
-                    view more
-                    <ion-icon
-                      class="icon"
-                      name="chevron-down-outline"
-                    ></ion-icon>
-                  </li>
-                  <li class="hidden-details">
                     <ion-icon class="icon" name="call-outline"></ion-icon>
                     ${data.phone}
                   </li>
-                  <li class="hidden-details">
+                  <li class="">
                     <ion-icon class="icon" name="globe-outline"></ion-icon>
                     ${data.website}
                   </li>
                 </ul>
               </div>
             </div>
+          </div>
   `;
-  console.log(html);
   gridSection.insertAdjacentHTML("beforeend", html);
 };
+
+const getApiDetails = function () {
+  fetch(`https://jsonplaceholder.typicode.com/users`)
+    .then((response) => response.json())
+    .then((data) => {
+      for (let a = 0; a < data.length; a++) {
+        renderDetails(data[a]);
+      }
+    });
+};
+getApiDetails();
+
+/********************************/
+/******* TOOGLE MODE *******/
+/******************************/
+
+light.addEventListener("click", function () {
+  document.querySelector("body").classList.toggle("toogle-light-mode");
+
+  light.classList.toggle("add");
+  dark.classList.toggle("add");
+});
+
+dark.addEventListener("click", function () {
+  document.querySelector("body").classList.toggle("toogle-light-mode");
+  light.classList.toggle("add");
+  dark.classList.toggle("add");
+});
+// }
 
 // const fetchApi = fetch(`https://jsonplaceholder.typicode.com/users`);
 
@@ -59,20 +89,22 @@ const renderDetails = function (data) {
 //   };
 // });
 
-const getApiDetails = function () {
-  fetch(`https://jsonplaceholder.typicode.com/users`)
-    .then((response) => response.json())
-    .then((data) => {
-      for (let a = 0; a < data.length; a++) {
-        console.log(data[a]);
-        // viewallDetails(data[a]);
-        // renderDetails(data[a]);
-        viewAllBtn.addEventListener("click", function () {
-          renderDetails(data[a]);
-        });
-      }
-      viewAllBtn.removeEventListener("click");
-    });
-};
+// clearBtn.addEventListener("click", function () {
+//   inputSearch.value = "";
+//   gridSection.textContent = "";
+// });
 
-getApiDetails();
+// viewMoreBtn.addEventListener("click", function () {
+//   hiddenDetail.classList.toggle(".hidden-details");
+//   console.log("fetch");
+//   console.log(hiddenDetail.classList);
+// });
+
+// searchBtn.addEventListener("click", function () {
+//   console.log("first");
+// });
+
+// searchBtn.addEventListener("click", function () {
+//   console.log(inputSearch.value);
+//   console.log("first");
+// });

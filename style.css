@@ -12,6 +12,9 @@ BG -- #212529
 TEXT-COLOR: #ced4da
 
 LIGHT MODE:
+BG: #b6b9bd
+TEXT-COLOR: #212529
+
 #fe9311
 #e67e22
 #141414
@@ -39,7 +42,7 @@ LIGHT MODE:
 }
 
 html {
-  font-size: 7px;
+  font-size: 8px;
 }
 
 body {
@@ -49,22 +52,29 @@ body {
   background-color: #212529;
 }
 
+.main {
+  width: 100%;
+  padding: 9.6rem 3.2rem;
+}
+
 .main-body-container {
   width: fit-content;
-  padding: 9.6rem 3.2rem;
   margin: 0 auto;
 }
 
 /******** HEADER **********/
 
-.nav {
-  padding: 6.4rem 0;
-  width: fit-content;
+.toogle-mode {
+  margin-bottom: 3.2rem;
+  font-size: 3.2rem;
+  background-color: #343a40;
+  padding: 0.8rem 1.6rem;
+  border-radius: 11px;
 }
 
 .search-container {
   background: transparent;
-  padding: 1.6rem 2rem;
+  padding: 1rem 2.4rem;
   display: flex;
   justify-content: flex-start;
   align-items: center;
@@ -72,6 +82,7 @@ body {
   color: #ced4da;
   box-shadow: 0 12px 32px rgba(0, 0, 0, 0.3);
   border-radius: 11px;
+  border: 1px solid #ced4da;
   margin-bottom: 3.2rem;
 }
 
@@ -87,13 +98,12 @@ body {
 }
 
 .input-name::placeholder {
-  font-size: 1.4rem;
+  font-size: 1.2rem;
   color: #ced4da;
 }
 
 .button-container {
-  display: flex;
-  gap: 2.4rem;
+  text-align: center;
 }
 
 .btn {
@@ -112,20 +122,17 @@ body {
 
 .feature-grid-container {
   margin: 6.4rem 0;
-  padding: 0 3.2rem;
 }
 
 .main-container {
-  display: flex;
-  align-items: center;
-  margin-bottom: 3.2rem;
-  gap: 3.2rem;
+  margin-bottom: 4.8rem;
 }
 
 .features-section {
   display: flex;
-  gap: 1rem;
-  align-items: center;
+  flex-direction: column;
+  gap: 3.2rem;
+  width: fit-content;
 }
 
 .filter {
@@ -146,12 +153,12 @@ body {
 
 .profile-card {
   background-color: #343a40;
-  padding: 3.2rem 4.8rem;
-  width: fit-content;
+  padding: 3.2rem;
+  width: 100%;
 }
 
 .profile-name {
-  font-size: 2.4rem;
+  font-size: 3.2rem;
   text-align: center;
   font-family: sans-serif;
   font-weight: 600;
@@ -160,30 +167,95 @@ body {
 }
 
 .text-section {
-  font-size: 2rem;
+  font-size: 1.6rem;
 }
 
 .text-section ul {
   list-style: none;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  column-gap: 6rem;
-  row-gap: 2.4rem;
-  line-height: 1.5;
+  display: flex;
+  flex-direction: column;
+  gap: 3.2rem;
 }
 
 .text-section ul li {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: 0.8rem;
   background-color: #212529;
-  padding: 1.2rem 2.4rem;
+  padding: 1.2rem 1.2rem;
   border-radius: 11px;
 }
 
+.text-section button {
+  margin: 3.2rem 0;
+  background: none;
+  border: none;
+  outline: none;
+  padding: 0 0 -0.8px 0;
+  font-size: 1.4rem;
+  color: #ced4da;
+  cursor: pointer;
+}
+
+.text-section button:hover {
+  border-bottom: 1px solid #a15818;
+  color: #a15818;
+}
+
+/********************************/
+/******* HIDDEN SECTIONS *******/
+/******************************/
+
+.text-section div.hidden-details {
+  display: none;
+}
+
+body.toogle-light-mode {
+  color: #212529;
+  background-color: #d1d2d4;
+}
+
+body.toogle-light-mode .toogle-mode {
+  background-color: #b6b9bd;
+}
+
+body.toogle-light-mode .search-icon {
+  font-size: 2.4rem;
+  color: #212529;
+}
+
+body.toogle-light-mode .input-name::placeholder {
+  font-size: 1.2rem;
+  color: #212529;
+}
+
+body.toogle-light-mode .profile-card {
+  background-color: #b6b9bd;
+  color: #212529;
+  padding: 3.2rem;
+  width: 100%;
+}
+
+body.toogle-light-mode .text-section ul li {
+  background-color: #d1d2d4;
+}
+
+body.toogle-light-mode .text-section button {
+  color: #212529;
+}
+body.toogle-light-mode .text-section button:hover {
+  color: #a15818;
+}
+
+.add {
+  display: none;
+}
+
+/******* MEDIA SCREEN *******/
+
 @media (min-width: 679px) {
   html {
-    font-size: 10px;
+    font-size: 13px;
   }
 
   .nav {
@@ -195,6 +267,13 @@ body {
 
   .search-container {
     width: 100%;
+  }
+
+  .features-section {
+    display: flex;
+    flex-direction: row;
+    gap: 3.2rem;
+    width: fit-content;
   }
 
   .grid-section {
