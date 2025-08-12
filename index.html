@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="shortcut icon"
+      href="Profile-logo__images.png"
+      type="image/x-icon"
+    />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Alumni+Sans+Pinstripe:ital@0;1&family=DM+Serif+Text:ital@0;1&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Roboto+Flex:opsz,wdth,wght,GRAD@8..144,151,100..1000,150&family=STIX+Two+Text:ital,wght@0,400..700;1,400..700&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="style.css" />
+    <script defer src="script.js"></script>
+
+    <title>Profile Card</title>
+  </head>
+
+  <body>
+    <div class="main-body-container">
+      <header class="header">
+        <nav class="nav">
+          <div class="search-container">
+            <ion-icon class="search-icon icon" name="search-outline"></ion-icon>
+            <input
+              class="input-name"
+              type="search"
+              placeholder="Enter name to search"
+            />
+          </div>
+          <div class="button-container">
+            <button class="search-btn btn">Search</button>
+            <button class="clear-btn btn">Clear All</button>
+          </div>
+        </nav>
+      </header>
+
+      <main class="main">
+        <div class="feature-grid-container">
+          <!-- section 1 -->
+          <section class="main-container">
+            <div class="features-section">
+              <label class="filter">Filter by</label>
+              <select class="filter-form" name="filter-form" id="">
+                <option value="Select">Select</option>
+                <option value="name">Name</option>
+                <option value="Location">Location</option>
+                <option value="Email">Email</option>
+                <option value="Company">Company</option>
+              </select>
+            </div>
+
+            <button class="viewall-btn btn">View All</button>
+          </section>
+
+          <!-- section 2 -->
+          <section class="grid-section">
+            <!-- <div class="profile-card">
+              <p class="profile-name">Hungbeme Taiwo samuel</p>
+              <div class="text-section">
+                <ul>
+                  <li>
+                    <ion-icon class="icon" name="location-outline"></ion-icon>
+                    Location
+                  </li>
+                  <li><ion-icon name="business-outline"></ion-icon> Company</li>
+                  <li>
+                    <ion-icon class="icon" name="mail-outline"></ion-icon> Email
+                  </li>
+                  <li class="view-more">
+                    view more
+                    <ion-icon
+                      class="icon"
+                      name="chevron-down-outline"
+                    ></ion-icon>
+                  </li>
+                  <li class="hidden-details">
+                    <ion-icon class="icon" name="call-outline"></ion-icon>
+                    Phone
+                  </li>
+                  <li class="hidden-details">
+                    <ion-icon class="icon" name="globe-outline"></ion-icon>
+                    Website
+                  </li>
+                </ul>
+              </div>
+            </div> -->
+          </section>
+        </div>
+      </main>
+    </div>
+    <footer></footer>
+
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
+    ></script>
+  </body>
+</html>
