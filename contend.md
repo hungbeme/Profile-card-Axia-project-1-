@@ -10,13 +10,15 @@ Grid of boxes (2 by 5)
 
 # Typhography :
 
-thin serif (Julius Sans One) and (Red Rose)
+-Alumni+Sans+Pinstripe
+-DM+Serif+Text
+-Inter
 
 # Colors :
 
 (DARK MODE)
--main color : golden ,dark grey
--Text color : light golden
+-main color : dark grey
+-Text color : white
 
 (LIGHT MODE)
 -main color : white
