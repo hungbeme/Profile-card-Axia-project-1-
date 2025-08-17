@@ -110,6 +110,10 @@ h1 {
 
 .button-container {
   text-align: center;
+  display: flex;
+  gap: 2.4rem;
+  align-items: center;
+  justify-content: center;
 }
 
 .btn {
@@ -150,16 +154,19 @@ h1 {
   background-color: #ced4da;
 }
 
+.view-buttons {
+  display: flex;
+  gap: 2.4rem;
+  align-items: center;
+  margin-bottom: 3.2rem;
+  /* justify-content: center; */
+}
+
 .grid-section {
   border-radius: 11px;
   display: flex;
   flex-direction: column;
   gap: 3.2rem;
-}
-
-.view-more {
-  width: fit-content;
-  margin-bottom: 3.2rem;
 }
 
 .profile-card {
