@@ -47,42 +47,25 @@
 
       <div class="feature-grid-container">
         <!-- section 1 -->
+        <form action="" class="form">
+          <div>
+            <label for="city">Filter by city</label>
+            <select name="city" id="city">
+              <option value="all">All</option>
+            </select>
+          </div>
 
-        <div class="view-buttons">
-          <button class="btn view-more">View More &dArr;</button>
-          <button class="btn view-less">View Less &uArr;</button>
-        </div>
+          <div>
+            <label for="company">Filter by company</label>
+            <select name="company" id="company">
+              <option value="all">All</option>
+            </select>
+          </div>
+        </form>
 
         <!-- section 2 -->
         <section class="grid-section">
-          <div class="profile-card hide">
-            <p class="profile-name">Name</p>
-            <div class="text-section">
-              <ul>
-                <li>
-                  <ion-icon class="icon" name="location-outline"></ion-icon>
-                  Location
-                </li>
-                <li><ion-icon name="business-outline"></ion-icon> Company</li>
-                <li>
-                  <ion-icon class="icon" name="mail-outline"></ion-icon> Email
-                </li>
-              </ul>
-
-              <div class="hidden-details">
-                <ul>
-                  <li>
-                    <ion-icon class="icon" name="call-outline"></ion-icon>
-                    Phone
-                  </li>
-                  <li class="">
-                    <ion-icon class="icon" name="globe-outline"></ion-icon>
-                    Website
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
+          <div class="profile-card"></div>
         </section>
       </div>
     </main>

@@ -1,287 +1,215 @@
-"script;";
-
+"use script;";
 const toogleBtn = document.querySelector(".toogle-mode");
 const light = document.querySelector(".light");
 const dark = document.querySelector(".dark");
 const inputSearch = document.querySelector(".input-name");
 const searchBtn = document.querySelector(".search-btn");
-const filterFormValue = document.querySelector(".filter-form");
+const selectCityEl = document.getElementById("city");
+const selectCompanyEl = document.getElementById("company");
 const gridSection = document.querySelector(".grid-section");
-const viewMoreBtn = document.querySelector(".view-more");
-const viewLessBtn = document.querySelector(".view-less");
 const clearBtn = document.querySelector(".clear-btn");
+const API_URL = `https://jsonplaceholder.typicode.com/users`;
 
 /********************************/
 /******* USING API *******/
 /******************************/
-
 gridSection.innerHTML = "";
 
-const fectchAPI = fetch(`https://jsonplaceholder.typicode.com/users`)
-  .then((response) => {
-    return response.json();
-  })
-  .then((data) => {
-    generalFunction(data);
-    alert("Details gotten successfully✅");
-  })
-  .catch(() =>
-    alert(`Acquiring Details failed. Please check your internet connection`)
-  );
+const fetchAPI = function (data) {
+  const check = fetch(API_URL)
+    .then((response) => response.json())
+    .then((data) => {
+      data.map((arr) => {
+        renderDetails(arr);
+      });
+      clearBtnFunction(data);
+      searchFunction(data);
+      filterCityFunction(data);
+      filterCompanyFunction(data);
+      viewFunction();
+      alert("Details gotten successfully✅");
+    })
+    .catch(() =>
+      alert(`Acquiring Details failed❌. Please check your internet connection`)
+    );
+};
+fetchAPI();
 
 /********************************/
-/******* GENERAL FUNCTION ******/
+/******* RENDER DETAILS *******/
 /******************************/
-const generalFunction = function (data) {
-  gridSection.innerHTML = "";
 
-  /********************************/
-  /******* TOOGLE MODE *******/
-  /******************************/
-
-  light.addEventListener("click", function () {
-    document.querySelector("body").classList.toggle("toogle-light-mode");
-
-    light.classList.toggle("add");
-    dark.classList.toggle("add");
-  });
-
-  dark.addEventListener("click", function () {
-    document.querySelector("body").classList.toggle("toogle-light-mode");
-    light.classList.toggle("add");
-    dark.classList.toggle("add");
-  });
-
-  /******************************/
-  /******* RENDER DETAILS *******/
-  /******************************/
-
-  data.map((arr, i) => {
+const renderDetails = function (data) {
+  try {
+    if (!data) throw new Error("User Not found");
     const html = `
-      <div class="profile-card hide">
-                <p class="profile-name">${arr.name}</p>
-                <div class="text-section">
-                  <ul>
-                    <li>
-                      <ion-icon class="icon" name="location-outline"></ion-icon>
-                      ${arr.address.street}, ${arr.address.city}
-                    </li>
-                    <li><ion-icon name="business-outline"></ion-icon> ${arr.company.name} </li>
-                    <li>
-                      <ion-icon class="icon" name="mail-outline"></ion-icon> ${arr.email}
-                    </li>
-                  </ul>
-    
-    
+       <div class="profile-card">
+              <p class="profile-name">${data.name}</p>
+              <div class="text-section">
+                <ul>
+                  <li>
+                    <ion-icon class="icon" name="location-outline"></ion-icon>
+                    ${data.address.street}, ${data.address.city}
+                  </li>
+                  <li>
+                    <ion-icon name="business-outline"></ion-icon>
+                    ${data.company.name}
+                  </li>
+                  <li>
+                    <ion-icon class="icon" name="mail-outline"></ion-icon>
+                    ${data.email}
+                  </li>
+                </ul>
+
+                  <div class="view-buttons">
+                    <button class="view-more">View More &dArr;</button>
+                    <button class="view-less">View Less &uArr;</button>
+                  </div>
+
                   <div class="hidden-details more-details">
                     <ul>
                       <li>
                         <ion-icon class="icon" name="call-outline"></ion-icon>
-                        ${arr.phone}
+                        ${data.phone}
                       </li>
                       <li class="">
                         <ion-icon class="icon" name="globe-outline"></ion-icon>
-                        ${arr.website}
+                        ${data.website}
                       </li>
                     </ul>
                   </div>
-                </div>
               </div>
-      `;
+            </div>
+       `;
     gridSection.insertAdjacentHTML("beforeend", html);
-  });
+  } catch (err) {
+    alert(err.message);
+  }
+};
 
-  /********************************/
-  /******* VIEW MORE *******/
-  /******************************/
+/********************************/
+/******* SEARCH FUNCTION *******/
+/******************************/
 
-  viewMoreBtn.addEventListener("click", function () {
+const searchFunction = function (response) {
+  searchBtn.addEventListener("click", function () {
     gridSection.innerHTML = "";
-    data.map((arr, i) => {
-      const html = `
-        <div class="profile-card hide">
-            <p class="profile-name">${arr.name}</p>
-            <div class="text-section">
-              <ul>
-                <li>
-                  <ion-icon class="icon" name="location-outline"></ion-icon>
-                  ${arr.address.street}, ${arr.address.city}
-                </li>
-                <li><ion-icon name="business-outline"></ion-icon> ${arr.company.name} </li>
-                <li>
-                  <ion-icon class="icon" name="mail-outline"></ion-icon> ${arr.email}
-                </li>
-              </ul>
 
+    const inputSearchValue = inputSearch.value.toLowerCase();
 
-              <div class="more-details">
-                <ul>
-                  <li>
-                    <ion-icon class="icon" name="call-outline"></ion-icon>
-                    ${arr.phone}
-                  </li>
-                  <li class="">
-                    <ion-icon class="icon" name="globe-outline"></ion-icon>
-                    ${arr.website}
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-  `;
-      gridSection.insertAdjacentHTML("beforeend", html);
-    });
-  });
-
-  /********************************/
-  /******* VIEW LESS *******/
-  /******************************/
-
-  viewLessBtn.addEventListener("click", function () {
-    gridSection.textContent = "";
-    data.map((arr, i) => {
-      const html2 = `
-    <div class="profile-card hide">
-              <p class="profile-name">${data[i].name}</p>
-              <div class="text-section">
-                <ul>
-                  <li>
-                    <ion-icon class="icon" name="location-outline"></ion-icon>
-                    ${data[i].address.street}, ${data[i].address.city}
-                  </li>
-                  <li><ion-icon name="business-outline"></ion-icon> ${data[i].company.name} </li>
-                  <li>
-                    <ion-icon class="icon" name="mail-outline"></ion-icon> ${data[i].email}
-                  </li>
-                </ul>
-                <div class="hidden-details">
-                  <ul>
-                    <li>
-                      <ion-icon class="icon" name="call-outline"></ion-icon>
-                      ${data[i].phone}
-                    </li>
-                    <li class="">
-                      <ion-icon class="icon" name="globe-outline"></ion-icon>
-                      ${data[i].website}
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-    `;
-      gridSection.insertAdjacentHTML("beforeend", html2);
-    });
-  });
-
-  /********************************/
-  /******* SEARCH FUNCTION *******/
-  /******************************/
-
-  searchBtn.addEventListener("click", function (e) {
-    e.preventDefault();
-
-    const searchValue = inputSearch.value.toLowerCase().trim();
-    data.map((arr, i) => {
-      const nameLowerCase = data[i].name.toLowerCase();
-      const usernameLowerCase = data[i].username.toLowerCase();
-
-      if (searchValue === nameLowerCase || searchValue === usernameLowerCase) {
-        gridSection.textContent = "";
-        const html2 = `
-    <div class="profile-card hide">
-              <p class="profile-name">${data[i].name}</p>
-              <div class="text-section">
-                <ul>
-                  <li>
-                    <ion-icon class="icon" name="location-outline"></ion-icon>
-                    ${data[i].address.street}, ${data[i].address.city}
-                  </li>
-                  <li><ion-icon name="business-outline"></ion-icon> ${data[i].company.name} </li>
-                  <li>
-                    <ion-icon class="icon" name="mail-outline"></ion-icon> ${data[i].email}
-                  </li>
-                </ul>
-                <div class="hidden-details">
-                  <ul>
-                    <li>
-                      <ion-icon class="icon" name="call-outline"></ion-icon>
-                      ${data[i].phone}
-                    </li>
-                    <li class="">
-                      <ion-icon class="icon" name="globe-outline"></ion-icon>
-                      ${data[i].website}
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-    `;
-        gridSection.textContent = "";
-        gridSection.insertAdjacentHTML("beforeend", html2);
-      }
-    });
-  });
-
-  /********************************/
-  /******* CLEAR BTN *******/
-  /******************************/
-
-  clearBtn.addEventListener("click", function () {
-    inputSearch.value = "";
-    gridSection.textContent = "";
-
-    data.map((arr, i) => {
-      const html2 = `
-    <div class="profile-card hide">
-              <p class="profile-name">${data[i].name}</p>
-              <div class="text-section">
-                <ul>
-                  <li>
-                    <ion-icon class="icon" name="location-outline"></ion-icon>
-                    ${data[i].address.street}, ${data[i].address.city}
-                  </li>
-                  <li><ion-icon name="business-outline"></ion-icon> ${data[i].company.name} </li>
-                  <li>
-                    <ion-icon class="icon" name="mail-outline"></ion-icon> ${data[i].email}
-                  </li>
-                </ul>
-                <div class="hidden-details">
-                  <ul>
-                    <li>
-                      <ion-icon class="icon" name="call-outline"></ion-icon>
-                      ${data[i].phone}
-                    </li>
-                    <li class="">
-                      <ion-icon class="icon" name="globe-outline"></ion-icon>
-                      ${data[i].website}
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-    `;
-
-      gridSection.insertAdjacentHTML("beforeend", html2);
-    });
+    const namefnd = response.find(
+      (val) =>
+        val.name.toLowerCase() === inputSearchValue ||
+        val.username.toLowerCase() === inputSearchValue
+    );
+    renderDetails(namefnd);
+    viewFunction();
   });
 };
 
 /********************************/
-/******* FILTER CITIES *******/
+/******* CLEAR FUNCTION *******/
 /******************************/
 
-// const filterText = function (data) {
-//   const filtercity = `<option class="select" value="Select">${data.address.city}</option>`;
-//   filterFormValue.insertAdjacentHTML("beforeend", filtercity);
-// };
+const clearBtnFunction = function (response) {
+  clearBtn.addEventListener("click", function () {
+    gridSection.innerHTML = "";
+    inputSearch.value = "";
 
-// filterFormValue.addEventListener("change", function (e) {
-//   console.log("filterFormParent");
-//   console.log(filterFormValue);
-// });
+    response.map((_, i) => {
+      renderDetails(response[i]);
+    });
+    viewFunction();
+  });
+};
 
-// document.querySelector(".add").addEventListener("click", function () {
-//   console.log("done");
-// });
+/********************************/
+/******* FILTER FUNCTION *******/
+/******************************/
 
-// }
+////// FILTER CITY
+const filterCityFunction = function (data) {
+  data.map((val, i) => {
+    const cityHtml = `<option value="${data[i].address.city}">${data[i].address.city}</option>`;
+    selectCityEl.insertAdjacentHTML("beforeend", cityHtml);
+  });
+
+  selectCityEl.addEventListener("change", function () {
+    gridSection.innerHTML = "";
+    const optionValue = this.value;
+
+    const cityFil = data.filter(
+      (val) => optionValue === val.address.city || optionValue === "all"
+    );
+
+    cityFil.map((arr) => {
+      renderDetails(arr);
+    });
+    viewFunction();
+  });
+};
+
+////// FILTER COUNTRY
+
+const filterCompanyFunction = function (data) {
+  data.map((val, i) => {
+    const companyHtml = `<option value="${data[i].company.name}">${data[i].company.name}</option>`;
+    selectCompanyEl.insertAdjacentHTML("beforeend", companyHtml);
+  });
+
+  selectCompanyEl.addEventListener("change", function () {
+    gridSection.innerHTML = "";
+    const optionValue = this.value;
+
+    const countryfil = data.filter(
+      (val) => optionValue === val.company.name || optionValue === "all"
+    );
+
+    countryfil.map((arr) => {
+      renderDetails(arr);
+    });
+
+    viewFunction();
+  });
+};
+
+/********************************/
+/******* TOOGLE MODE *******/
+/******************************/
+
+light.addEventListener("click", function () {
+  document.querySelector("body").classList.toggle("toogle-light-mode");
+
+  light.classList.toggle("add");
+  dark.classList.toggle("add");
+});
+
+dark.addEventListener("click", function () {
+  document.querySelector("body").classList.toggle("toogle-light-mode");
+  light.classList.toggle("add");
+  dark.classList.toggle("add");
+});
+
+/********************************/
+/******* VIEW MORE *******/
+/******************************/
+
+const viewFunction = function () {
+  const viewMoreBtn = document.querySelectorAll(".view-more");
+  const viewLessBtn = document.querySelectorAll(".view-less");
+  const viewButtonsEl = document.querySelectorAll(".profile-card");
+
+  viewMoreBtn.forEach((viewVal) => {
+    viewVal.addEventListener("click", function () {
+      viewButtonsEl.forEach((buttonval) => {
+        buttonval.classList.add("show");
+      });
+    });
+  });
+
+  viewLessBtn.forEach((val) => {
+    val.addEventListener("click", function () {
+      viewButtonsEl.forEach((val) => val.classList.remove("show"));
+    });
+  });
+};
