@@ -109,7 +109,7 @@ h1 {
 
 .input-name::placeholder {
   font-size: 1rem;
-  color: #ced4da;
+  color: #fff;
   width: 100%;
 }
 
@@ -126,7 +126,7 @@ h1 {
   background-color: #a15818;
   border: none;
   border-radius: 5px;
-  color: #d1d2d4;
+  color: #fff;
   transition: 0.2s;
 }
 
