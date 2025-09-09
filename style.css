@@ -181,7 +181,7 @@ h1 {
   gap: 3.2rem;
 }
 
-.text-section ul {
+.show-ul {
   list-style: none;
   display: flex;
   flex-direction: column;
@@ -215,24 +215,31 @@ h1 {
 .view-less:hover {
   padding-bottom: 3px;
   border-bottom: 1px solid #a15818;
+  margin-bottom: 1.2rem;
 }
 
-.show .view-less {
+.hidden-details .view-less {
   display: block;
+  margin-bottom: 1.2rem;
 }
-.show .view-more {
+.hidden-details .view-more {
   display: none;
 }
 
-.show .hidden-details {
-  display: block;
-}
 /********************************/
 /******* HIDDEN SECTIONS *******/
 /******************************/
 
-.hidden-details {
+.ul-list {
   display: none;
+}
+
+.hidden-details .ul-list {
+  /* display: block; */
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 3.2rem;
 }
 
 body.toogle-light-mode {

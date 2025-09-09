@@ -46,7 +46,7 @@ const renderDetails = function (data) {
        <div class="profile-card">
               <p class="profile-name">${data.name}</p>
               <div class="text-section">
-                <ul>
+                <ul class='show-ul'>
                   <li>
                     <ion-icon class="icon" name="location-outline"></ion-icon>
                     ${data.address.street}, ${data.address.city}
@@ -60,14 +60,12 @@ const renderDetails = function (data) {
                     ${data.email}
                   </li>
                 </ul>
-
-                  <div class="view-buttons">
+                  
+                <div>
                     <button class="view-more">View More &dArr;</button>
                     <button class="view-less">View Less &uArr;</button>
-                  </div>
-
-                  <div class="hidden-details more-details">
-                    <ul>
+                  
+                    <ul class="ul-list">
                       <li>
                         <ion-icon class="icon" name="call-outline"></ion-icon>
                         ${data.phone}
@@ -201,15 +199,15 @@ const viewFunction = function () {
 
   viewMoreBtn.forEach((viewVal) => {
     viewVal.addEventListener("click", function () {
-      viewButtonsEl.forEach((buttonval) => {
-        buttonval.classList.add("show");
-      });
+      const viewMoreBtnParentEl = viewVal.parentElement;
+      viewMoreBtnParentEl.classList.add("hidden-details");
     });
   });
 
   viewLessBtn.forEach((val) => {
     val.addEventListener("click", function () {
-      viewButtonsEl.forEach((val) => val.classList.remove("show"));
+      const viewLessBtnParentEl = val.parentElement;
+      viewLessBtnParentEl.classList.remove("hidden-details");
     });
   });
 };
